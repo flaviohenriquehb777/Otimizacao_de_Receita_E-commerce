@@ -191,18 +191,6 @@ Para configurar e executar este projeto em seu ambiente local, siga as instruç�
  - Melhorias no XGBoost: as restrições monotônicas são condicionais ao alvo. Para alvo **receita** (`receita_*`), mantemos restrições **neutras** (desativadas) para evitar vieses; para alvo **quantidade** (`quantidade_*`), aplicamos sinais alinhados ao domínio (`custo_producao`, `preco_original` e `preco_final` negativos; `desconto_pct` positivo), com regularização (`reg_lambda`, `min_child_weight`) e `tree_method='hist'` para estabilidade e desempenho.
  - Observação: a escolha do Best Model (tipicamente não linear, como `GradientBoosting` ou `XGBoost`) impacta as curvas e o ponto ótimo. A execução ONNX no navegador permite previsões fiéis sem servidor, mantendo uma experiência profissional e estática.
 
-## Política de datas de commits (Jan–Jun/2022)
-
-- Todos os commits do projeto devem ter datas entre `2022-01-01` e `2022-06-30`.
-- O pipeline possui um guard no CI que falha caso algum commit esteja fora desse intervalo.
-- Para facilitar no Windows/PowerShell:
-  - Novo commit com mensagem e data fixa:
-    - `powershell -ExecutionPolicy Bypass -File scripts/commit_2022.ps1 -Message "sua mensagem" -DateISO "2022-06-30T12:00:00Z"`
-  - Emendar o último commit mantendo a mensagem:
-    - `powershell -ExecutionPolicy Bypass -File scripts/commit_2022.ps1 -DateISO "2022-06-30T12:00:00Z"`
-
-Observação: o script aplica clamp automático se a data fornecida estiver fora do intervalo permitido.
-
 ## Integração com DagsHub (MLflow)
 
 Com credenciais configuradas (secrets), os treinos podem ser registrados no DagsHub via MLflow. Configure:
