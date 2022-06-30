@@ -1,7 +1,7 @@
 # Otimização de Receita com Machine Learning
 
 [![Build CI](https://github.com/flaviohenriquehb777/Projeto_Maximizacao_Receita/actions/workflows/ci.yml/badge.svg)](https://github.com/flaviohenriquehb777/Projeto_Maximizacao_Receita/actions/workflows/ci.yml)
-[![Pages](https://img.shields.io/github/deployments/flaviohenriquehb777/Projeto_Maximizacao_Receita/github-pages?label=pages)](https://github.com/flaviohenriquehb777/Projeto_Maximizacao_Receita/deployments/activity_log?environment=github-pages)
+[![Pages](docs/badges/pages.svg)](https://github.com/flaviohenriquehb777/Projeto_Maximizacao_Receita/deployments/activity_log?environment=github-pages)
 
 Clique na miniatura para abrir a aplicação:
 
@@ -12,7 +12,7 @@ Clique na miniatura para abrir a aplicação:
   
 </p>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
+[![License: MIT](docs/badges/license-mit.svg)](LICENSE.md)
 
 **Projeto de análise de dados de vendas e modelagem preditiva para otimização da receita, identificando a combinação ideal de preço de venda e desconto para maximizar lucros.**
 
