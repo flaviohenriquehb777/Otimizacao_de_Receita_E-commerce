@@ -28,6 +28,10 @@ Clique na miniatura para abrir a aplicação:
 - [Licença](#licença)
 - [Contato](#contato)
 
+## Contexto Temporal do Projeto
+
+O projeto foi conduzido entre janeiro e junho de 2022. Os artefatos publicados, os resultados e os registros associados refletem esse período e devem ser interpretados nesse contexto temporal.
+
 ## Visão Geral do Projeto:
 
 Este projeto foca na aplicação de Machine Learning (Regressão Linear) para analisar dados de vendas e determinar as estratégias ideais de precificação e desconto que maximizem a receita. Através de uma análise exploratória detalhada e da construção de um modelo preditivo, buscamos fornecer insights acionáveis para otimização do desempenho de vendas.

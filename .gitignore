@@ -19,11 +19,15 @@ report/
 
 # Data (use external storage; commit samples only if needed)
 dados/*.xlsx
+!dados/.gitkeep
 
 # OS/editor
 .DS_Store
 Thumbs.db
 .vscode/
+
+# DVC local config (keep secrets local)
+.dvc/config.local
 
 # Node/npm (if any dev tooling)
 node_modules/

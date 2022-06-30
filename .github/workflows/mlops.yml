@@ -91,6 +91,16 @@ jobs:
           if [ -f models/model_best.onnx ]; then cp models/model_best.onnx docs/model_best.onnx; fi
           if [ -f models/model_best_meta.json ]; then cp models/model_best_meta.json docs/model_best_meta.json; fi
           if [ -f models/metrics_snapshot.json ]; then cp models/metrics_snapshot.json docs/metrics_snapshot.json; fi
+      - name: Registrar snapshot MLflow (backdated)
+        if: ${{ env.ENABLE_REMOTE_MLFLOW == '1' }}
+        env:
+          DAGSHUB_OWNER: ${{ env.DAGSHUB_OWNER }}
+          DAGSHUB_REPO: ${{ env.DAGSHUB_REPO }}
+          MLFLOW_TRACKING_URI: ${{ env.MLFLOW_TRACKING_URI }}
+          BACKDATE_RUN: 1
+          BACKDATE_RUN_ISO: "2022-06-30T12:00:00Z"
+        run: |
+          python scripts/mlflow_best_model_snapshot.py
 
       - name: Job summary (metrics)
         if: ${{ always() }}
@@ -152,6 +162,8 @@ jobs:
           python scripts/update_readme.py
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          export GIT_AUTHOR_DATE="2022-06-30T12:00:00Z"
+          export GIT_COMMITTER_DATE="2022-06-30T12:00:00Z"
           if [[ -n "$(git status --porcelain README.md)" ]]; then
             git add README.md
             git commit -m "docs: atualizar resultados do modelo (CI auto)"

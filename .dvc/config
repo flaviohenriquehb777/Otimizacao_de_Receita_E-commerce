@@ -1,7 +1,4 @@
 [core]
     remote = dagshub
-['remote "dagshub"']
+[remote "dagshub"]
     url = https://dagshub.com/flaviohenriquehb777/Projeto_Maximizacao_Receita.dvc
-    auth = basic
-    user = flaviohenriquehb777
-    password = 8cbd6c6ed2246614de40703cb82d54a4777b0903
