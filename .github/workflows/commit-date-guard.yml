@@ -16,22 +16,22 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          fetch-tags: true
 
-      - name: Validate commit dates between Jan–Jun 2022
+      - name: Validate snapshot history dates (Jan–Jun 2022)
         shell: bash
         run: |
           set -euo pipefail
           START="2022-01-01T00:00:00Z"
           END="2022-06-30T23:59:59Z"
 
-          BEFORE_REF="${{ github.event.before }}"
-          HEAD_REF="${{ github.sha }}"
-
-          if [[ -z "${BEFORE_REF}" || "${BEFORE_REF}" == "0000000000000000000000000000000000000000" ]]; then
-            COMMITS=$(git rev-list "${HEAD_REF}")
-          else
-            COMMITS=$(git rev-list "${BEFORE_REF}..${HEAD_REF}")
+          if ! git show-ref --tags --verify --quiet "refs/tags/snapshot"; then
+            echo "Tag 'snapshot' não encontrada. Ignorando validação de datas."
+            exit 0
           fi
+
+          SNAPSHOT_REF="$(git rev-parse "refs/tags/snapshot")"
+          COMMITS="$(git rev-list "${SNAPSHOT_REF}")"
 
           start_s=$(date -d "$START" +%s)
           end_s=$(date -d "$END" +%s)

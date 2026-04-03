@@ -1,11 +1,11 @@
 {
   "model_type": "LinearRegression",
-  "intercept": 1722.3307354740455,
+  "intercept": 5511.211370743062,
   "coefficients": {
-    "custo_producao": 113.13076736403262,
-    "preco_original": 5706.382005065967,
-    "desconto_pct": -67519.35358331236,
-    "preco_final": -5565.982728622304
+    "custo_producao": -5.082822266363846,
+    "preco_original": 2100.1285635300173,
+    "desconto_pct": -29847.710128512754,
+    "preco_final": -1893.1518742879614
   },
   "target": "receita_mes",
   "features": [

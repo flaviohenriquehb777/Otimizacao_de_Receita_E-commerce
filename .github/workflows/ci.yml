@@ -39,7 +39,7 @@ jobs:
           pip install -r requirements-ci.txt
 
       - name: Validate DagsHub configuration
-        if: ${{ secrets.DAGSHUB_OWNER != '' && secrets.DAGSHUB_REPO != '' && secrets.DAGSHUB_TOKEN != '' }}
+        if: ${{ env.DAGSHUB_OWNER != '' && env.DAGSHUB_REPO != '' && env.DAGSHUB_TOKEN != '' }}
         shell: bash
         env:
           DAGSHUB_OWNER: ${{ secrets.DAGSHUB_OWNER }}
