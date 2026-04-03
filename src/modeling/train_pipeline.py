@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from dataclasses import dataclass
 import warnings
+import contextlib
 
 import numpy as np
 import pandas as pd
@@ -328,13 +329,30 @@ def main():
     for spec in specs:
         # Definir experimento específico por modelo para registro separado no DagsHub/MLflow
         exp_name_model = f"{exp_base}_{spec.name}"
+        run_id = None
+        mlflow_active = False
         try:
             mlflow.set_experiment(exp_name_model)
-        except Exception:
-            pass
-        with mlflow.start_run(run_name=f"{spec.name}") as active_run:
-            run_id = active_run.info.run_id
-            mlflow.log_params({'model': spec.name, **spec.params})
+            run_ctx = mlflow.start_run(run_name=f"{spec.name}")
+            mlflow_active = True
+        except Exception as e_mlflow:
+            warnings.warn(f"Falha ao iniciar tracking no MLflow (seguindo sem tracking remoto): {e_mlflow}")
+            try:
+                mlflow.set_tracking_uri((Path.cwd() / "mlruns").resolve().as_uri())
+                mlflow.set_experiment(exp_name_model)
+                run_ctx = mlflow.start_run(run_name=f"{spec.name}")
+                mlflow_active = True
+            except Exception:
+                run_ctx = contextlib.nullcontext()
+                mlflow_active = False
+
+        with run_ctx as active_run:
+            if mlflow_active and active_run is not None:
+                run_id = active_run.info.run_id
+                try:
+                    mlflow.log_params({'model': spec.name, **spec.params})
+                except Exception:
+                    pass
             # Tags de contexto e commit para rastreamento no DagsHub/MLflow
             try:
                 mlflow.set_tag('context', context_label)
@@ -350,7 +368,10 @@ def main():
                 'cv_mae': metrics.get('cv_mae_mean'),
                 'cv_r2': metrics.get('cv_r2_mean'),
             }
-            mlflow.log_metrics(metrics_with_alias)
+            try:
+                mlflow.log_metrics(metrics_with_alias)
+            except Exception:
+                pass
 
             # Fit/holdout metrics
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -367,7 +388,10 @@ def main():
                 # Métrica de negócio principal: lucro esperado médio em holdout
                 'expected_profit': float(_simulate_expected_profit_holdout(spec.estimator, X_test, target)),
             }
-            mlflow.log_metrics({f"holdout_{k}": v for k, v in holdout.items()})
+            try:
+                mlflow.log_metrics({f"holdout_{k}": v for k, v in holdout.items()})
+            except Exception:
+                pass
 
             # Persist model locally
             local_model_path = MODELS_DIR / f"{spec.name}.pkl"
@@ -393,7 +417,10 @@ def main():
                 best_profit = holdout_profit
                 best_entry = entry
 
-            mlflow.set_tag('selection_metric', 'holdout_expected_profit')
+            try:
+                mlflow.set_tag('selection_metric', 'holdout_expected_profit')
+            except Exception:
+                pass
 
     assert best_entry is not None, "Nenhum modelo foi avaliado."
 
