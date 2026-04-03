@@ -71,6 +71,8 @@ def init_tracking():
             return False
 
     if has_credentials:
+        if not username and owner:
+            username = owner
         # Garantir que MLflow leia credenciais via env
         if username:
             os.environ.setdefault("MLFLOW_TRACKING_USERNAME", username)
