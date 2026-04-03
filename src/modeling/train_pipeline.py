@@ -26,7 +26,38 @@ except Exception:
     shap = None  # type: ignore
     HAS_SHAP = False
 
-import mlflow
+try:
+    import mlflow  # type: ignore
+except Exception:
+    class _NoopRunInfo:
+        run_id = "no-mlflow"
+
+    class _NoopRun:
+        info = _NoopRunInfo()
+
+    class _NoopMlflow:
+        def set_tracking_uri(self, *args, **kwargs):
+            return None
+
+        def set_experiment(self, *args, **kwargs):
+            return None
+
+        def start_run(self, *args, **kwargs):
+            return contextlib.nullcontext(_NoopRun())
+
+        def log_params(self, *args, **kwargs):
+            return None
+
+        def log_metrics(self, *args, **kwargs):
+            return None
+
+        def log_artifact(self, *args, **kwargs):
+            return None
+
+        def set_tag(self, *args, **kwargs):
+            return None
+
+    mlflow = _NoopMlflow()
 
 try:
     import dagshub
