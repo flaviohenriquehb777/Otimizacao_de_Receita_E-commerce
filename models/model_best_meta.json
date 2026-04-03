@@ -5,6 +5,6 @@
     "desconto_pct",
     "preco_final"
   ],
-  "target": "receita_mes",
-  "model_name": "GradientBoosting"
+  "target": "quantidade_vendida_mes",
+  "model_name": "RandomForest"
 }
