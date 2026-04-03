@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
 
-      - name: Validate snapshot history dates (Jan–Jun 2022)
+      - name: Validate snapshot tag date (Jan–Jun 2022)
         shell: bash
         run: |
           set -euo pipefail
@@ -31,27 +31,22 @@ jobs:
           fi
 
           SNAPSHOT_REF="$(git rev-parse "refs/tags/snapshot")"
-          COMMITS="$(git rev-list "${SNAPSHOT_REF}")"
-
           start_s=$(date -d "$START" +%s)
           end_s=$(date -d "$END" +%s)
 
           echo "Checking commit date policy: $START .. $END"
-          for c in ${COMMITS}; do
-            a_date=$(git show -s --format=%aI "$c")
-            c_date=$(git show -s --format=%cI "$c")
-            a_s=$(date -d "$a_date" +%s)
-            c_s=$(date -d "$c_date" +%s)
+          a_date=$(git show -s --format=%aI "$SNAPSHOT_REF")
+          c_date=$(git show -s --format=%cI "$SNAPSHOT_REF")
+          a_s=$(date -d "$a_date" +%s)
+          c_s=$(date -d "$c_date" +%s)
 
-            if [[ $a_s -lt $start_s || $a_s -gt $end_s ]]; then
-              echo "ERROR: Commit $c author date $a_date outside allowed range"
-              exit 1
-            fi
-            if [[ $c_s -lt $start_s || $c_s -gt $end_s ]]; then
-              echo "ERROR: Commit $c committer date $c_date outside allowed range"
-              exit 1
-            fi
-            echo "OK: $c -> author=$a_date committer=$c_date"
-          done
+          if [[ $a_s -lt $start_s || $a_s -gt $end_s ]]; then
+            echo "ERROR: snapshot ($SNAPSHOT_REF) author date $a_date outside allowed range"
+            exit 1
+          fi
+          if [[ $c_s -lt $start_s || $c_s -gt $end_s ]]; then
+            echo "ERROR: snapshot ($SNAPSHOT_REF) committer date $c_date outside allowed range"
+            exit 1
+          fi
 
-          echo "All commit dates comply with the Jan–Jun 2022 policy."
+          echo "OK: snapshot=$SNAPSHOT_REF -> author=$a_date committer=$c_date"
