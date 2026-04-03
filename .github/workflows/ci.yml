@@ -60,6 +60,7 @@ jobs:
           pytest -q
 
       - name: Train models and export JSON
+        if: ${{ hashFiles('dados/dataset_cafeterias_rj.xlsx') != '' }}
         env:
           MLFLOW_EXPERIMENT_NAME: context7
           MLFLOW_TRACKING_URI: https://dagshub.com/${{ secrets.DAGSHUB_OWNER }}/${{ secrets.DAGSHUB_REPO }}.mlflow
