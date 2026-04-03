@@ -70,7 +70,7 @@
 
   <!-- Botão chamativo -->
   <g transform="translate(80,532)">
-    <a xlink:href="https://flaviohenriquehb777.github.io/Projeto_Maximizacao_Receita/index.html" target="_blank" rel="noopener noreferrer">
+    <a xlink:href="https://flaviohenriquehb777.github.io/Otimizacao_de_Receita_E-commerce/index.html?nocache=20220630" target="_blank" rel="noopener noreferrer">
       <rect x="0" y="0" width="300" height="60" rx="12" fill="url(#accentGrad)"/>
       <text x="24" y="38" font-family="Inter, Segoe UI, Roboto, Arial" font-size="22" font-weight="700" fill="#082f49">Abrir aplicação</text>
     </a>

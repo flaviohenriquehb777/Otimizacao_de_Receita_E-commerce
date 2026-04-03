@@ -1,12 +1,12 @@
 # Otimização de Receita com Machine Learning
 
-[![Build CI](https://github.com/flaviohenriquehb777/Projeto_Maximizacao_Receita/actions/workflows/ci.yml/badge.svg)](https://github.com/flaviohenriquehb777/Projeto_Maximizacao_Receita/actions/workflows/ci.yml)
-[![Pages](https://img.shields.io/github/deployments/flaviohenriquehb777/Projeto_Maximizacao_Receita/github-pages?label=pages)](https://github.com/flaviohenriquehb777/Projeto_Maximizacao_Receita/deployments/activity_log?environment=github-pages)
+[![Build CI](https://github.com/flaviohenriquehb777/Otimizacao_de_Receita_E-commerce/actions/workflows/ci.yml/badge.svg)](https://github.com/flaviohenriquehb777/Otimizacao_de_Receita_E-commerce/actions/workflows/ci.yml)
+[![Pages](https://img.shields.io/github/deployments/flaviohenriquehb777/Otimizacao_de_Receita_E-commerce/github-pages?label=pages)](https://github.com/flaviohenriquehb777/Otimizacao_de_Receita_E-commerce/deployments/activity_log?environment=github-pages)
 
 Clique na miniatura para abrir a aplicação:
 
 <p align="center">
-  <a href="https://flaviohenriquehb777.github.io/Projeto_Maximizacao_Receita/index.html?nocache=20220630" title="Abrir aplicação">
+  <a href="https://flaviohenriquehb777.github.io/Otimizacao_de_Receita_E-commerce/index.html?nocache=20220630" title="Abrir aplicação">
     <img src="docs/thumbnail_card.svg" alt="Miniatura da Aplicação" style="width: 640px; max-width: 100%; height: auto;" />
   </a>
   
@@ -14,12 +14,12 @@ Clique na miniatura para abrir a aplicação:
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
 
-**Projeto de análise de dados de vendas e modelagem preditiva para otimização da receita, identificando a combinação ideal de preço de venda e desconto para maximizar lucros.**
+**Modelo de análise de dados de vendas e modelagem preditiva para otimização da receita, identificando a combinação ideal de preço de venda e desconto para maximizar lucros.**
 
 ## Sumário
-- [Visão Geral do Projeto](#visão-geral-do-projeto)
+- [Visão Geral do Modelo](#visão-geral-do-modelo)
 - [Objetivos](#objetivos)
-- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Estrutura do Modelo](#estrutura-do-modelo)
 - [Base de Dados](#base-de-dados)
 - [Metodologia de Análise e Modelagem](#metodologia-de-análise-e-modelagem)
 - [Resultados Chave e Recomendações](#resultados-chave-e-recomendações)
@@ -28,13 +28,15 @@ Clique na miniatura para abrir a aplicação:
 - [Licença](#licença)
 - [Contato](#contato)
 
-## Contexto Temporal do Projeto
+## Contexto Temporal do Modelo
 
-O projeto foi conduzido entre janeiro e junho de 2022. Os artefatos publicados, os resultados e os registros associados refletem esse período e devem ser interpretados nesse contexto temporal.
+O modelo foi conduzido entre janeiro e junho de 2022. Os artefatos publicados, os resultados e os registros associados refletem esse período e devem ser interpretados nesse contexto temporal.
 
-## Visão Geral do Projeto:
+Para deixar explícito o estado da entrega original, a tag git `snapshot` aponta para o commit que representa a versão entregue.
 
-Este projeto foca na aplicação de Machine Learning (Regressão Linear) para analisar dados de vendas e determinar as estratégias ideais de precificação e desconto que maximizem a receita. Através de uma análise exploratória detalhada e da construção de um modelo preditivo, buscamos fornecer insights acionáveis para otimização do desempenho de vendas.
+## Visão Geral do Modelo:
+
+Este modelo foca na aplicação de Machine Learning (Regressão Linear) para analisar dados de vendas e determinar as estratégias ideais de precificação e desconto que maximizem a receita. Através de uma análise exploratória detalhada e da construção de um modelo preditivo, buscamos fornecer insights acionáveis para otimização do desempenho de vendas.
 
 ## Objetivos:
 
@@ -43,15 +45,15 @@ Este projeto foca na aplicação de Machine Learning (Regressão Linear) para an
 * Construir e avaliar um modelo de regressão capaz de prever a quantidade vendida.
 * Identificar a combinação ideal de preço de venda e desconto para maximizar a receita.
 
-## Estrutura do Projeto
+## Estrutura do Modelo
 
 - `dados/`: bases originais utilizadas nos estudos (não são necessárias para rodar a aplicação web; o treino usa `dataset_cafeterias_rj.xlsx`).
   - `dataset_cafeterias_rj.xlsx`
   - `dadosVenda.xlsx`
 - `notebooks/`: cadernos Jupyter (EDA e estudos); não são obrigatórios para uso da aplicação.
-  - `Projeto_Maximizacao_Receita_01.ipynb`
-  - `Projeto_Maximizacao_Receita_EDA_Preprocess.ipynb`
-  - `Projeto_Maximizacao_Receita_Final.ipynb`
+  - `01_Projeto_Maximizacao_Receita_Inicial.ipynb`
+  - `02_Projeto_Maximizacao_Receita_EDA_Preprocess.ipynb`
+  - `03_Projeto_Maximizacao_Receita_Modelagem_Validacao.ipynb`
   - `04_Diagnostico_Receita_e_Politicas.ipynb` (diagnóstico de receita e política ótima)
 - `src/`: código-fonte
   - `config/paths.py`: caminhos e constantes
@@ -72,7 +74,7 @@ Este projeto foca na aplicação de Machine Learning (Regressão Linear) para an
 
 ## Base de Dados:
 
-O projeto utiliza o arquivo `dataset_cafeterias_rj.xlsx` (constante `DADOS_AMOR_A_CAKES`), localizado na pasta `dados/`. Este dataset inclui as seguintes colunas principais:
+O modelo utiliza o arquivo `dataset_cafeterias_rj.xlsx` (constante `DADOS_AMOR_A_CAKES`), localizado na pasta `dados/`. Este dataset inclui as seguintes colunas principais:
 
 * `preco_final`: Preço final de venda do produto.
 * `preco_original`: Preço original do produto antes de qualquer desconto.
@@ -83,7 +85,7 @@ Com base nos testes de normalidade (Shapiro) e homogeneidade de variâncias (Lev
 
 ## Metodologia de Análise e Modelagem:
 
-O desenvolvimento do projeto seguiu as seguintes etapas:
+O desenvolvimento do modelo seguiu as seguintes etapas:
 
 1.  **Carregamento e Inspeção de Dados:** Inicialização e compreensão da estrutura da base de dados.
 2.  **Análise Exploratória de Dados (EDA):** Identificação de padrões, tendências e anomalias nas relações entre preço, desconto e quantidade vendida.
@@ -119,7 +121,7 @@ Os resultados dependem dos coeficientes reais treinados no seu ambiente. A aplic
 
 ## Instalação e Uso
 
-Para configurar e executar este projeto em seu ambiente local, siga as instruções abaixo:
+Para configurar e executar este modelo em seu ambiente local, siga as instruções abaixo:
 
 1. **Pré-requisitos**
    - Python 3.12 (recomendado; CI usa 3.12)
@@ -128,10 +130,10 @@ Para configurar e executar este projeto em seu ambiente local, siga as instruç�
 
 2.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/seu-usuario/Projeto_Maximizacao_Receita.git](https://github.com/seu-usuario/Projeto_Maximizacao_Receita.git)
-    cd Projeto_Maximizacao_Receita
+    git clone https://github.com/flaviohenriquehb777/Otimizacao_de_Receita_E-commerce.git
+    cd Otimizacao_de_Receita_E-commerce
     ```
-    *(Lembre-se de substituir `seu-usuario` pelo seu nome de usuário do GitHub.)*
+    *(Se estiver usando um fork, substitua pelo seu usuário do GitHub.)*
 
 3. **Instale as dependências**
     ```bash
@@ -142,7 +144,7 @@ Para configurar e executar este projeto em seu ambiente local, siga as instruç�
     ```bash
     jupyter lab
     ```
-    * Navegue até `notebooks/` e abra: `Projeto_Maximizacao_Receita_01.ipynb` → `Projeto_Maximizacao_Receita_EDA_Preprocess.ipynb`.
+    * Navegue até `notebooks/` e abra: `01_Projeto_Maximizacao_Receita_Inicial.ipynb` → `02_Projeto_Maximizacao_Receita_EDA_Preprocess.ipynb` → `03_Projeto_Maximizacao_Receita_Modelagem_Validacao.ipynb`.
     * Para diagnóstico profissional e política de desconto, execute `04_Diagnostico_Receita_e_Politicas.ipynb`:
       - Detecta o alvo (receita ou quantidade) dos artefatos de treino.
       - Gera gráficos de diagnóstico (holdout: real vs predito, resíduos).
@@ -197,16 +199,21 @@ Para configurar e executar este projeto em seu ambiente local, siga as instruç�
 
 ## Integração com DagsHub (MLflow)
 
-Com credenciais configuradas (secrets), os treinos podem ser registrados no DagsHub via MLflow. Configure:
+Este modelo tem integração opcional com o DagsHub para registrar experimentos no MLflow.
+
+- Repositório no DagsHub (experimentos): https://dagshub.com/flaviohenriquehb777/Otimizacao_de_Receita_E-commerce
+
+Com credenciais configuradas (secrets/variáveis de ambiente), os treinos podem ser registrados no DagsHub via MLflow. Configure:
 
 - `MLFLOW_EXPERIMENT_NAME`: nome do experimento
-- `MLFLOW_TRACKING_URI`, `MLFLOW_TRACKING_USERNAME`, `MLFLOW_TRACKING_PASSWORD` ou token
+- `DAGSHUB_OWNER` e `DAGSHUB_REPO` (usados para montar `MLFLOW_TRACKING_URI` automaticamente quando possível)
+- `DAGSHUB_TOKEN` (ou `MLFLOW_TRACKING_TOKEN`) e, opcionalmente, `MLFLOW_TRACKING_USERNAME`/`MLFLOW_TRACKING_PASSWORD`
 
-Em seguida, habilite no pipeline (ou CI) o log de parâmetros, métricas e artefatos (best model e explicabilidade). Caso os secrets não estejam configurados, o pipeline segue com tracking local sem falhar.
+Em seguida, habilite no pipeline (ou CI) o log de parâmetros, métricas e artefatos (best model e explicabilidade). Caso as credenciais não estejam configuradas, o pipeline segue com tracking local sem falhar.
 
 ## Licença:
 
-Este projeto está licenciado sob a Licença MIT. Para mais detalhes, consulte o arquivo [LICENSE.md](LICENSE.md) na raiz do repositório.
+Este modelo está licenciado sob a Licença MIT. Para mais detalhes, consulte o arquivo [LICENSE.md](LICENSE.md) na raiz do repositório.
 
 ## Contato:
 

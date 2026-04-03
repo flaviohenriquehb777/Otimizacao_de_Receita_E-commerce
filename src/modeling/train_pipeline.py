@@ -63,7 +63,7 @@ def init_tracking():
 
     def set_local_tracking():
         try:
-            local_uri = f"file://{(Path.cwd() / 'mlruns').resolve()}"
+            local_uri = (Path.cwd() / "mlruns").resolve().as_uri()
             mlflow.set_tracking_uri(local_uri)
             return True
         except Exception as e_local:
