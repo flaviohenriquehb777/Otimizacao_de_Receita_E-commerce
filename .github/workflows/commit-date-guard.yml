@@ -30,7 +30,7 @@ jobs:
             exit 0
           fi
 
-          SNAPSHOT_REF="$(git rev-parse "refs/tags/snapshot")"
+          SNAPSHOT_REF="$(git rev-parse "refs/tags/snapshot^{commit}")"
           start_s=$(date -d "$START" +%s)
           end_s=$(date -d "$END" +%s)
 
