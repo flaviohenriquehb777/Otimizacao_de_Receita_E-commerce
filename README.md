@@ -1,12 +1,12 @@
 # Otimização de Receita com Machine Learning
 
-[![Build CI](https://github.com/flaviohenriquehb777/Otimizacao_de_Receita_E-commerce/actions/workflows/ci.yml/badge.svg)](https://github.com/flaviohenriquehb777/Otimizacao_de_Receita_E-commerce/actions/workflows/ci.yml)
-[![Pages](https://img.shields.io/github/deployments/flaviohenriquehb777/Otimizacao_de_Receita_E-commerce/github-pages?label=pages)](https://github.com/flaviohenriquehb777/Otimizacao_de_Receita_E-commerce/deployments/activity_log?environment=github-pages)
+[![Build CI](https://github.com/flaviohenriquehb777/Otimizacao_de_Receita/actions/workflows/ci.yml/badge.svg)](https://github.com/flaviohenriquehb777/Otimizacao_de_Receita/actions/workflows/ci.yml)
+[![Pages](https://img.shields.io/github/deployments/flaviohenriquehb777/Otimizacao_de_Receita/github-pages?label=pages)](https://github.com/flaviohenriquehb777/Otimizacao_de_Receita/deployments/activity_log?environment=github-pages)
 
 Clique na miniatura para abrir a aplicação:
 
 <p align="center">
-  <a href="https://flaviohenriquehb777.github.io/Otimizacao_de_Receita_E-commerce/index.html?nocache=20220630" title="Abrir aplicação">
+  <a href="https://flaviohenriquehb777.github.io/Otimizacao_de_Receita/index.html?nocache=20220630" title="Abrir aplicação">
     <img src="docs/thumbnail_card.svg" alt="Miniatura da Aplicação" style="width: 640px; max-width: 100%; height: auto;" />
   </a>
   
@@ -130,8 +130,8 @@ Para configurar e executar este modelo em seu ambiente local, siga as instruçõ
 
 2.  **Clone o repositório:**
     ```bash
-    git clone https://github.com/flaviohenriquehb777/Otimizacao_de_Receita_E-commerce.git
-    cd Otimizacao_de_Receita_E-commerce
+    git clone https://github.com/flaviohenriquehb777/Otimizacao_de_Receita.git
+    cd Otimizacao_de_Receita
     ```
     *(Se estiver usando um fork, substitua pelo seu usuário do GitHub.)*
 
@@ -201,7 +201,7 @@ Para configurar e executar este modelo em seu ambiente local, siga as instruçõ
 
 Este modelo tem integração opcional com o DagsHub para registrar experimentos no MLflow.
 
-- Repositório no DagsHub (experimentos): https://dagshub.com/flaviohenriquehb777/Otimizacao_de_Receita_E-commerce
+- Repositório no DagsHub (experimentos): https://dagshub.com/flaviohenriquehb777/Otimizacao_de_Receita
 
 Com credenciais configuradas (secrets/variáveis de ambiente), os treinos podem ser registrados no DagsHub via MLflow. Configure:
 
